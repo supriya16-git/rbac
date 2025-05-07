@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: secret-reader-job
+  namespace: dev
+spec:
+  template:
+    spec:
+      serviceAccountName: secrets-reader
+      restartPolicy: Never
+      containers:
+        - name: secret-reader
+          image: supriyabs/get-secrets:latest
+          imagePullPolicy: Always
